@@ -1,0 +1,469 @@
+App.css:
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --theme-black: #000000;
+  --theme-white: #FFFFFF;
+  --theme-dark-grey: #2E2E2E;
+  --theme-beige: #CFC8B8;
+  --theme-cream: #F5F0E5;
+  --theme-coral: #F26A4B;
+
+  --bg-color: var(--theme-beige);
+  --text-color: var(--theme-black);
+  --card-bg: var(--theme-cream);
+
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: var(--theme-dark-grey);
+    --text-color: var(--theme-white);
+    --card-bg: var(--theme-black);
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  overflow-x: hidden;
+}
+
+#root {
+  display: block;
+  overflow-x: hidden;
+}
+
+.App {
+  width: 96%;
+  max-width: 1600px;
+  min-height: 92vh;
+  margin: 3vh auto;
+  padding: 3vh 3vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  background-color: var(--card-bg);
+  border-radius: 40px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 60px var(--glass-shadow);
+  overflow-x: hidden;
+}
+
+.App-Intro {
+  width: 100%;
+  max-width: none;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.App-Intro-Heading .fold-text {
+  --fold-text-color: var(--text-color) !important;
+}
+
+.App-Intro-SubHeading {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-class {
+  line-height: 1.4;
+  padding-bottom: 0.1em;
+}
+
+.App-Content {
+  width: 100%;
+  max-width: 900px;
+  padding: 0 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.App-Content-GetStarted-Desc {
+  width: 100%;
+  margin-top: 4rem;
+  padding: 2.5rem 3.5rem;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+
+  text-align: center;
+  font-size: 1.35rem;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.App-Content-GetStarted-Button {
+  width: 100%;
+  margin-top: 2.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 1024px) {
+  .App {
+    width: 94%;
+    max-width: 1400px;
+    min-height: 94vh;
+    margin: 3vh auto;
+    padding: 5vh 4vw;
+    border-radius: 32px;
+  }
+
+  .App-Content {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+
+  .App-Intro {
+    padding: 0 15px;
+  }
+
+  .App-Content-GetStarted-Desc {
+    padding: 2rem 2.5rem;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .App {
+    width: 94%;
+    min-height: 94vh;
+    margin: 3vh auto;
+    padding: 7vh 4vw 5vh;
+    border-radius: 28px;
+  }
+
+  .App-Intro {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .App-Intro-Heading .fold-text {
+    --fold-text-font-size: 38px !important;
+  }
+
+  .App-Intro-SubHeading {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+
+  .App-Content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 5px;
+  }
+
+  .App-Content-GetStarted-Desc {
+    width: 100%;
+    margin-top: 2.5rem;
+    padding: 1.5rem 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    border-radius: 16px;
+  }
+
+  .App-Content-GetStarted-Button {
+    margin-top: 2rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .App {
+    width: 94%;
+    min-height: 94vh;
+    margin: 3vh auto;
+    padding: 6vh 3vw 4vh;
+    border-radius: 24px;
+  }
+
+  .App-Intro {
+    padding: 0 5px;
+  }
+
+  .App-Intro-SubHeading {
+    font-size: 1rem;
+  }
+
+  .App-Content-GetStarted-Desc {
+    padding: 1.25rem 1rem;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+}
+
+
+App.jsx:
+import './App.css'
+import { useNavigate } from 'react-router-dom';
+import FoldText from './components/FoldText';
+import GradientText from './components/GradientText';
+import AnimatedContent from './components/AnimatedContent';
+import SpecularButton from './components/SpecularButton';
+import MaskRevealUp from './components/MaskRevealUp';
+
+function App() {
+
+  const navigate = useNavigate();
+
+  return (
+    <section className='App'>
+      <section className='App-Intro'>
+        <div className='App-Intro-Heading'>
+          <FoldText
+            text="LossLess Engine"
+            splitBy="char"
+            hinge="top"
+            trigger="view"
+            duration={0.35}
+            stagger={0.035}
+            ease="power3.out"
+            perspective={700}
+            creaseShading={0.55}
+            fontSize={65}
+            fontWeight={700}
+            color="#000000"
+          />
+        </div>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          reverse={false}
+          duration={0.9}
+          ease="power3.out"
+          initialOpacity={0}
+          animateOpacity
+          scale={1}
+          threshold={0.1}
+          delay={0}
+          >
+          <div className='App-Intro-SubHeading'>
+            <GradientText
+              colors={["#ca1717","#F26A4B"]}
+              animationSpeed={45}
+              showBorder={true}
+              className="custom-class"
+            >
+              AI-Powered Defense Against Fraud, Returns & Chargebacks !
+            </GradientText>
+          </div>
+        </AnimatedContent>
+      </section>
+      <section className='App-Content'>
+        <div className='App-Content-GetStarted-Desc'>
+          <MaskRevealUp
+            className="text-lg text-muted-foreground"
+            delay={350}
+            lines={["Every fraud case, chargeback, and return costs you real money.","LossLess Neural intelligently catches payment risks with precision defense only, no false positives.","Keep more revenue. Stay profitable."]}
+          />
+        </div>
+        <AnimatedContent
+          distance={100}
+          direction="vertical"
+          reverse={false}
+          duration={0.9}
+          ease="power3.out"
+          initialOpacity={0}
+          animateOpacity
+          scale={1}
+          threshold={0.1}
+          delay={0}
+          >
+          <div className='App-Content-GetStarted-Button'>
+            <SpecularButton
+              size="lg"
+              radius={18}
+              tint="#F26A4B"
+              tintOpacity={0}
+              blur={0}
+              textColor="#000000"
+              lineColor="#CFC8B8"
+              baseColor="#F26A4B"
+              intensity={1}
+              shineSize={10}
+              shineFade={40}
+              thickness={1}
+              speed={0.35}
+              followMouse
+              proximity={250}
+              autoAnimate={true}
+              onClick={() => navigate('/evaluate')}
+            >
+              Get Access
+            </SpecularButton>
+          </div>
+        </AnimatedContent>
+        <div className='App-Content-NavBox'>
+          <AnimatedContent
+            distance={100}
+            direction="vertical"
+            reverse={false}
+            duration={0.9}
+            ease="power3.out"
+            initialOpacity={0}
+            animateOpacity
+            scale={1}
+            threshold={0.1}
+            delay={0}
+            >
+            <div className='App-Content-Model-Button'>
+              <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#F26A4B"
+                tintOpacity={0}
+                blur={0}
+                textColor="#000000"
+                lineColor="#CFC8B8"
+                baseColor="#F26A4B"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={true}
+                onClick={() => navigate('/model')}
+              >
+                Model Details
+              </SpecularButton>
+            </div>
+          </AnimatedContent>
+          <AnimatedContent
+            distance={100}
+            direction="vertical"
+            reverse={false}
+            duration={0.9}
+            ease="power3.out"
+            initialOpacity={0}
+            animateOpacity
+            scale={1}
+            threshold={0.1}
+            delay={0}
+            >
+            <div className='App-Content-BenchMark-Button'>
+              <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#F26A4B"
+                tintOpacity={0}
+                blur={0}
+                textColor="#000000"
+                lineColor="#CFC8B8"
+                baseColor="#F26A4B"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={true}
+                onClick={() => navigate('/benchmark')}
+              >
+                Model BenchMark
+              </SpecularButton>
+            </div>
+          </AnimatedContent>
+          <AnimatedContent
+            distance={100}
+            direction="vertical"
+            reverse={false}
+            duration={0.9}
+            ease="power3.out"
+            initialOpacity={0}
+            animateOpacity
+            scale={1}
+            threshold={0.1}
+            delay={0}
+            >
+            <div className='App-Content-Developer-Button'>
+              <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#F26A4B"
+                tintOpacity={0}
+                blur={0}
+                textColor="#000000"
+                lineColor="#CFC8B8"
+                baseColor="#F26A4B"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={true}
+                onClick={() => navigate('/developer')}
+              >
+                Developer
+              </SpecularButton>
+            </div>
+          </AnimatedContent>
+        </div>
+      </section>
+    </section>
+  )
+}
+
+export default App
