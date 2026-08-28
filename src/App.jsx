@@ -108,7 +108,6 @@ function App() {
         </div>
 
         <div className="App-Content-NavBox">
-
           <AnimatedContent
             distance={100}
             direction="horizontal"
@@ -221,6 +220,22 @@ function App() {
           </AnimatedContent>
         </div>
       </section>
+      <AnimatedContent
+            distance={100}
+            direction="horizontal"
+            reverse={false}
+            duration={0.9}
+            ease="power3.out"
+            initialOpacity={0}
+            animateOpacity
+            scale={1}
+            threshold={0.1}
+            delay={0}
+          >
+          <div className='App-Footer'>
+            <span>Defending merchant margins with AI | LossLess Engine | © RazorPay Buildathon 2026</span>
+          </div>
+        </AnimatedContent>
     </section>
   );
 }
