@@ -112,3 +112,57 @@ body {
   line-height: 1.4;
   padding-bottom: 0.1em;
 }
+
+.Developer-Content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px; 
+  width: 100%;
+  margin-top: 5vh; 
+}
+
+.Developer-Content-Right {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;    
+  gap: 30px;             
+}
+
+.Developer-Connect-Text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.Developer-Content-Image {
+  position: relative;
+  width: 100%;
+  max-width: 400px; 
+  height: 60vh; 
+  border-radius: 20px;
+  overflow: hidden; 
+  background: transparent;
+  margin-top: 0; 
+}
+
+.Developer-Content-Dock {
+  width: 400px; 
+  display: flex;
+  justify-content: center;
+  margin-top: 0; 
+  pointer-events: auto;
+}
+
+.Developer-Content-Dock .dock-outer {
+  position: relative !important;
+  margin: 0 !important;
+}
+
+.Developer-Content-Dock .dock-panel {
+  position: relative !important;
+  transform: none !important;
+  left: auto !important;
+  bottom: auto !important;
+}
