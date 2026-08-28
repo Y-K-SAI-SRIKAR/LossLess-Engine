@@ -70,7 +70,7 @@ body {
 }
 
 .Developer{
-    width: 96%;
+  width: 96%;
   max-width: 1600px;
   min-height: 92vh;
   margin: 3vh auto;
@@ -86,3 +86,29 @@ body {
   overflow-x: hidden;
 }
 
+.Developer-Intro {
+  width: 100%;
+  max-width: none;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.Developer-Intro-Heading .fold-text {
+  --fold-text-color: var(--text-color) !important;
+}
+
+.Developer-Intro-SubHeading {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-class {
+  line-height: 1.4;
+  padding-bottom: 0.1em;
+}
