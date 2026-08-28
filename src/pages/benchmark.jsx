@@ -1,8 +1,12 @@
 import React from "react";
+import './benchmark.css';
 
 function BenchMark(){
     return (
-        <div>This is benchMark details page</div>
+        <section className="BenchMark">
+            <div>This is benchMark details page</div>
+        </section>
+
     )
 }
 export default BenchMark;
