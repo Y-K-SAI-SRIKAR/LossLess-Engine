@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import './model.css';
 import FoldText from "../components/FoldText";
 import GradientText from "../components/GradientText";
@@ -20,7 +21,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         <p className="font-semibold text-sm">{label}</p>
         {payload.map((entry, index) => (
           <p key={index} style={{ color: entry.color }} className="text-sm">
-            {entry.name}: ${(entry.value / 1000000).toFixed(2)}M
+            {entry.name}: {entry.value.toFixed(2)}%
           </p>
         ))}
       </div>
@@ -31,27 +32,60 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 function Model(){
 
-    const salesData = [
-        { month: 'Jan 24', goals: 250000, sales: 280000, salesArea: 280000 },
-        { month: 'Feb 24', goals: 420000, sales: 350000, salesArea: 350000 },
-        { month: 'Mar 24', goals: 380000, sales: 480000, salesArea: 480000 },
-        { month: 'Apr 24', goals: 520000, sales: 390000, salesArea: 390000 },
-        { month: 'May 24', goals: 300000, sales: 520000, salesArea: 520000 },
-        { month: 'Jun 24', goals: 550000, sales: 465000, salesArea: 465000 },
-        { month: 'Apr 24', goals: 520000, sales: 390000, salesArea: 390000 },
-        { month: 'May 24', goals: 300000, sales: 520000, salesArea: 520000 },
-        { month: 'Jun 24', goals: 550000, sales: 465000, salesArea: 465000 },
-        { month: 'Apr 24', goals: 520000, sales: 390000, salesArea: 390000 },
-        { month: 'May 24', goals: 300000, sales: 520000, salesArea: 520000 },
-    ];
+    const [HistoryData, setHistoryData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchHistory() {
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_ML_MODEL_URL}/model/history`
+                );
+
+                const data = response.data;
+
+                setHistoryData(data);
+
+            } catch (err) {
+                console.error("History API Error:", err);
+                setError(err.message);
+
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchHistory();
+    }, []);
+
+    if (loading) {
+    return <div>Loading Model History...</div>;
+    }
+
+    if (error) {
+        return <div>Failed to load Model History: {error}</div>;
+    }
+
+    if (!HistoryData) {
+        return null;
+    }
+
+
+    const ModelData = HistoryData.versions.map((version) => ({
+        model: `M${version.version}`,
+        Precision: version.test_precision*100,
+        ReCall: version.test_recall*100,
+        ReCallArea: version.test_recall*100,
+    }));
 
     const chartConfig = {
-        goals: {
-            label: 'Goals',
+        Precision: {
+            label: 'Precision',
             color: 'hsl(var(--chart-1))',
         },
-        sales: {
-            label: 'Sales',
+        ReCall: {
+            label: 'ReCall',
             color: 'hsl(var(--chart-2))',
         },
     };
@@ -88,15 +122,15 @@ function Model(){
             </section>
             <section className="Model-Content">
                 <div className="Model-Content-Graph">
-                    <div className="w-full max-w-5xl flex items-center justify-center p-6 lg:p-8 mt-6">
+                    <div className="w-full max-w-5xl flex items-center justify-center p-6 lg:px-8 py-2">
                         <Card className="w-full lg:max-w-4xl custom-graph-card">
                             <CardHeader className="border-0 min-h-auto pt-6 pb-6">
                                 <div className="flex items-center justify-between">
                                     <CardTitle className="text-base font-semibold">Model Performance Overview</CardTitle>
                                 </div>
                                 <div className="flex items-center gap-4 text-sm mt-4">
-                                    <ChartLabel label="Sales" color={chartConfig.sales.color} />
-                                    <ChartLabel label="Goals" color={chartConfig.goals.color} />
+                                    <ChartLabel label="ReCall" color={chartConfig.ReCall.color} />
+                                    <ChartLabel label="Precision" color={chartConfig.Precision.color} />
                                 </div>
                             </CardHeader>
 
@@ -106,7 +140,7 @@ function Model(){
                                     className="h-[350px] w-full [&_.recharts-curve.recharts-tooltip-cursor]:stroke-initial"
                                 >
                                     <ComposedChart
-                                        data={salesData}
+                                        data={ModelData}
                                         margin={{
                                             top: 5,
                                             right: 15,
@@ -115,9 +149,9 @@ function Model(){
                                         }}
                                     >
                                         <defs>
-                                            <linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
-                                                <stop offset="0%" stopColor={chartConfig.sales.color} stopOpacity={0.3} />
-                                                <stop offset="100%" stopColor={chartConfig.sales.color} stopOpacity={0.05} />
+                                            <linearGradient id="ReCallGradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stopColor={chartConfig.ReCall.color} stopOpacity={0.3} />
+                                                <stop offset="100%" stopColor={chartConfig.ReCall.color} stopOpacity={0.05} />
                                             </linearGradient>
                                         </defs>
 
@@ -130,7 +164,7 @@ function Model(){
                                         />
 
                                         <XAxis
-                                            dataKey="month"
+                                            dataKey="model"
                                             axisLine={false}
                                             tickLine={false}
                                             tick={{ fontSize: 11, className: 'text-muted-foreground' }}
@@ -142,11 +176,11 @@ function Model(){
                                             axisLine={false}
                                             tickLine={false}
                                             tick={{ fontSize: 11, className: 'text-muted-foreground' }}
-                                            tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`}
-                                            domain={['dataMin - 50000', 'dataMax + 50000']}
+                                            tickFormatter={(value) => `${value}%`}
+                                            domain={[0, 100]}
                                             tickMargin={12}
                                         />
-                                        <ReferenceLine x="Mar 24" stroke={chartConfig.sales.color} strokeWidth={1} />
+                                        <ReferenceLine x="Mar 24" stroke={chartConfig.ReCall.color} strokeWidth={1} />
                                         <ChartTooltip
                                             content={<CustomTooltip />}
                                             cursor={{
@@ -157,35 +191,35 @@ function Model(){
                                         />
                                         <Area
                                             type="linear"
-                                            dataKey="salesArea"
+                                            dataKey="ReCallArea"
                                             stroke="transparent"
-                                            fill="url(#salesGradient)"
+                                            fill="url(#ReCallGradient)"
                                             strokeWidth={0}
                                             dot={false}
                                         />
                                         <Line
                                             type="linear"
-                                            dataKey="sales"
-                                            stroke={chartConfig.sales.color}
+                                            dataKey="ReCall"
+                                            stroke={chartConfig.ReCall.color}
                                             strokeWidth={2}
                                             dot={{
                                                 fill: 'var(--background)',
                                                 strokeWidth: 2,
                                                 r: 6,
-                                                stroke: chartConfig.sales.color,
+                                                stroke: chartConfig.ReCall.color,
                                             }}
                                         />
                                         <Line
                                             type="linear"
-                                            dataKey="goals"
-                                            stroke={chartConfig.goals.color}
+                                            dataKey="Precision"
+                                            stroke={chartConfig.Precision.color}
                                             strokeWidth={2}
                                             strokeDasharray="4 4"
                                             dot={{
                                                 fill: 'var(--background)',
                                                 strokeWidth: 2,
                                                 r: 6,
-                                                stroke: chartConfig.goals.color,
+                                                stroke: chartConfig.Precision.color,
                                                 strokeDasharray: '0',
                                             }}
                                         />

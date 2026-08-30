@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="/" element={<App />} />
       <Route path="/evaluate" element={<Evaluate />} />
       <Route path="/benchmark" element={<BenchMark />} />
-      <Route path="/model" element={<Model />} />
+      <Route path="/models" element={<Model />} />
       <Route path="/developer" element={<Developer />} />
     </Routes>
   </BrowserRouter>
