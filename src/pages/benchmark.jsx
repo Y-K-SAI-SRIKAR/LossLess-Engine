@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './benchmark.css';
+import axios from "axios";
 import FoldText from "../components/FoldText";
 import GradientText from "../components/GradientText";
-import AnimatedContent from "../components/AnimatedContent";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 import {
   Card,
@@ -16,6 +16,47 @@ import { Badge } from "@/components/ui/badge";
 import { TrendingUp } from "lucide-react";
 
 function BenchMark(){
+
+    const [benchmarkData, setBenchmarkData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchBenchmark() {
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_ML_MODEL_URL}/model/benchmark`
+                );
+
+                const data = response.data;
+
+                setBenchmarkData(data);
+
+            } catch (err) {
+                console.error("Benchmark API Error:", err);
+                setError(err.message);
+
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchBenchmark();
+    }, []);
+
+    if (loading) {
+    return <div>Loading benchmark data...</div>;
+    }
+
+    if (error) {
+        return <div>Failed to load benchmark data: {error}</div>;
+    }
+
+    if (!benchmarkData) {
+        return null;
+    }
+
+
     const chartConfig = {
         Testing: {
             label: "Testing",
@@ -26,12 +67,64 @@ function BenchMark(){
             color: "#2E2E2E", 
         },
     };
-    const chartData = [
-        { metric: "Accuracy", Testing: 186, Validation: 92 },
-        { metric: "Precision", Testing: 305, Validation: 178 },
-        { metric: "Recall", Testing: 237, Validation: 145 },
-        { metric: "April", Testing: 273, Validation: 203 },
-    ];
+    
+    const chartData1 = benchmarkData
+    ? [
+        {
+            metric: "Accuracy",
+            Testing: benchmarkData.baseline.test_accuracy*100,
+            Validation:benchmarkData.baseline.validation_pr_auc*100
+        },
+        {
+            metric: "Precision",
+            Testing: benchmarkData.baseline.test_precision*100,
+            Validation:benchmarkData.baseline.validation_precision*100
+        },
+        {
+            metric: "Recall",
+            Testing: benchmarkData.baseline.test_recall*100,
+            Validation:benchmarkData.baseline.validation_recall*100
+        },
+        {
+            metric: "F1 Score",
+            Testing: benchmarkData.baseline.test_f1*100,
+            Validation:benchmarkData.baseline.validation_f1*100
+        },
+        {
+            metric: "ROC AUC",
+            Testing: benchmarkData.baseline.test_roc_auc*100,
+        },
+    ]
+    : [];
+
+    const chartData2 = benchmarkData
+    ? [
+        {
+            metric: "Accuracy",
+            Testing: benchmarkData.current.test_accuracy*100,
+            Validation:benchmarkData.current.validation_pr_auc*100
+        },
+        {
+            metric: "Precision",
+            Testing: benchmarkData.current.test_precision*100,
+            Validation: benchmarkData.current.validation_pr_auc*100,
+        },
+        {
+            metric: "Recall",
+            Testing: benchmarkData.current.test_recall*100,
+            Validation: benchmarkData.current.validation_recall*100,
+        },
+        {
+            metric: "F1 Score",
+            Testing: benchmarkData.current.test_f1*100,
+            Validation: benchmarkData.current.validation_f1*100,
+        },
+        {
+            metric: "ROC AUC",
+            Testing: benchmarkData.current.test_roc_auc*100,
+        },
+    ]
+    : [];
 
     return (
         <section className="BenchMark">
@@ -64,18 +157,6 @@ function BenchMark(){
                 </div>
             </section>
             <section className="BenchMark-Content-Charts">
-                <AnimatedContent
-                    distance={100}
-                    direction="vertical"
-                    reverse={false}
-                    duration={0.9}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0}
-                >
                     <div className="BenchMark-Content-Charts-1">
                         <Card>
                             <CardHeader className="items-center pb-4">
@@ -98,7 +179,7 @@ function BenchMark(){
                                     config={chartConfig}
                                     className="mx-auto aspect-square max-h-[250px]"
                                     >
-                                    <RadarChart data={chartData}>
+                                    <RadarChart data={chartData1}>
                                         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
                                         <PolarAngleAxis dataKey="metric" />
                                         <PolarGrid strokeDasharray="3 3" />
@@ -119,19 +200,6 @@ function BenchMark(){
                             </CardContent>
                         </Card>
                     </div>
-                </AnimatedContent>
-                <AnimatedContent
-                    distance={100}
-                    direction="vertical"
-                    reverse={false}
-                    duration={0.9}
-                    ease="power3.out"
-                    initialOpacity={0}
-                    animateOpacity
-                    scale={1}
-                    threshold={0.1}
-                    delay={0}
-                >
                     <div className="BenchMark-Content-Charts-2">
                         <Card>
                             <CardHeader className="items-center pb-4">
@@ -154,7 +222,7 @@ function BenchMark(){
                                     config={chartConfig}
                                     className="mx-auto aspect-square max-h-[250px]"
                                     >
-                                    <RadarChart data={chartData}>
+                                    <RadarChart data={chartData2}>
                                         <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
                                         <PolarAngleAxis dataKey="metric" />
                                         <PolarGrid strokeDasharray="3 3" />
@@ -175,7 +243,6 @@ function BenchMark(){
                             </CardContent>
                         </Card>
                     </div>
-                </AnimatedContent>
             </section>
         </section>
     )
