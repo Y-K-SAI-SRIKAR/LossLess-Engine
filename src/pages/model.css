@@ -15,6 +15,32 @@
   --glass-bg: rgba(255, 255, 255, 0.3);
   --glass-border: rgba(255, 255, 255, 0.4);
   --glass-shadow: rgba(0, 0, 0, 0.05);
+
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 89% 56%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.6%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 3.6%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.6%;
+  --muted: 0 0% 96.1%;
+  --muted-foreground: 0 0% 45.1%;
+  --accent: 0 0% 9%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96.1%;
+  --secondary-foreground: 0 0% 9%;
+  --ring: 0 0% 3.6%;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,6 +52,19 @@
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
     --glass-shadow: rgba(0, 0, 0, 0.3);
+
+    --background: 0 0% 3.6%;
+    --foreground: 0 0% 98.2%;
+    --card: 0 0% 3.6%;
+    --card-foreground: 0 0% 98.2%;
+    --popover: 0 0% 3.6%;
+    --popover-foreground: 0 0% 98.2%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --primary: 0 0% 98.2%;
+    --primary-foreground: 0 0% 9%;
   }
 }
 
@@ -69,7 +108,7 @@ body {
   overflow-x: hidden;
 }
 
-.Model{
+.Model {
   width: 96%;
   max-width: 1600px;
   min-height: 92vh;
@@ -111,4 +150,241 @@ body {
 .custom-class {
   line-height: 1.4;
   padding-bottom: 0.1em;
+}
+
+.Model-Content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.Model-Content-Graph {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.recharts-wrapper {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.recharts-cartesian-axis-tick {
+  font-size: 11px;
+  fill: var(--text-color);
+  opacity: 0.7;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-default-tooltip {
+  background-color: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  padding: 12px;
+}
+
+.recharts-tooltip-label {
+  color: var(--text-color);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.recharts-tooltip-item {
+  color: var(--text-color);
+  font-size: 12px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 12px var(--glass-shadow);
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.card-title {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.custom-graph-card {
+  background-color: var(--theme-cream); 
+  border-radius: 24px;
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); 
+  overflow: hidden; 
+}
+
+@media (prefers-color-scheme: dark) {
+  .custom-graph-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.dropdown-menu-content {
+  background-color: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  z-index: 50;
+}
+
+.dropdown-menu-item {
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .dropdown-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.dropdown-menu-separator {
+  background-color: var(--glass-border);
+  height: 1px;
+  margin: 0.25rem 0;
+}
+
+.badge {
+  background-color: var(--theme-coral);
+  color: var(--theme-white);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.button {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.button-ghost {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid transparent;
+}
+
+.button-ghost:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.button-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .Model {
+    width: 98%;
+    margin: 2vh auto;
+    padding: 2vh 2vw;
+    min-height: auto;
+    border-radius: 24px;
+  }
+
+  .Model-Intro-SubHeading {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+
+  .Model-Content-Graph {
+    padding: 0;
+  }
+
+  .custom-graph-card {
+    border-radius: 16px;
+  }
+
+  .card-header {
+    padding: 1rem;
+  }
+
+  .card-content {
+    padding: 1rem;
+  }
+
+  .recharts-cartesian-axis-tick {
+    font-size: 10px;
+  }
+
+  .dropdown-menu-item {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .Model {
+    width: 99%;
+    padding: 1.5vh 1.5vw;
+  }
+
+  .Model-Intro-Heading {
+    font-size: 2rem;
+  }
+
+  .Model-Intro-SubHeading {
+    font-size: 1rem;
+  }
+
+  .card-header {
+    padding: 0.75rem;
+  }
+
+  .card-content {
+    padding: 0.75rem;
+  }
+}
+
+@media print {
+  .dropdown-menu-trigger,
+  .button {
+    display: none;
+  }
+
+  .Model {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
 }
