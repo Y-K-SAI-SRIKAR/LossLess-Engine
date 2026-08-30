@@ -93,7 +93,7 @@ body {
   text-align: center;
 }
 
-.Developer-Intro-Heading .fold-text {
+.BenchMark-Intro-Heading .fold-text {
   --fold-text-color: var(--text-color) !important;
 }
 
