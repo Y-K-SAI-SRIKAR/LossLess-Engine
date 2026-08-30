@@ -86,3 +86,97 @@ body {
   overflow-x: hidden;
 }
 
+.BenchMark-Intro {
+  width: 100%;
+  max-width: none;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.Developer-Intro-Heading .fold-text {
+  --fold-text-color: var(--text-color) !important;
+}
+
+.BenchMark-Intro-SubHeading {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-class {
+  line-height: 1.4;
+  padding-bottom: 0.1em;
+}
+
+.BenchMark-Content-Charts {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 0 2vw;
+}
+
+
+.BenchMark-Content-Charts-1,
+.BenchMark-Content-Charts-2 {
+  flex: 1;
+  width: 100%;
+  max-width: 50%;
+  background-color: var(--theme-white);
+  border-radius: 24px; 
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  overflow: hidden;
+}
+
+
+[data-chart] {
+  --color-desktop: var(--theme-coral); 
+  --color-mobile: var(--theme-dark-grey);
+}
+
+[role="presentation"] {
+  background-color: transparent; 
+  color: var(--text-color);
+  border: none;
+  box-shadow: none;
+}
+
+.recharts-wrapper {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.recharts-cartesian-axis-tick text {
+  fill: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: hsl(var(--muted-foreground));
+}
+
+.recharts-polar-angle-axis-tick text {
+  fill: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+
+.recharts-polar-grid line {
+  stroke: hsl(var(--border));
+  opacity: 0.5;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-surface {
+  overflow: visible;
+}
