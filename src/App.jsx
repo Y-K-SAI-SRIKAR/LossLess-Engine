@@ -101,7 +101,7 @@ function App() {
                 autoAnimate={true}
                 onClick={() => navigate('/evaluate')}
               >
-                Get Access
+                Run Evaluation
               </SpecularButton>
             </div>
           </AnimatedContent>
@@ -175,7 +175,7 @@ function App() {
                 followMouse
                 proximity={250}
                 autoAnimate={true}
-                onClick={() => navigate('/model')}
+                onClick={() => navigate('/models')}
               >
                 Model Details
               </SpecularButton>
