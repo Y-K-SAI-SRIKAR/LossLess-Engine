@@ -137,3 +137,117 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.Evaluate-Content-Single .w-full,
+.Evaluate-Content-Batch .w-full {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem; 
+  width: 100%;
+}
+
+.batch-analysis-result,
+.single-analysis-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.result-card {
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px; 
+  width: 100%;
+  margin-top: 1.5rem;
+  overflow: hidden; 
+  box-shadow: 0 8px 24px var(--glass-shadow);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.03);
+  transition: background-color 0.3s ease;
+}
+
+.result-header:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.result-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--theme-coral);
+}
+
+.dropdown-arrow {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.result-body {
+  padding: 1.5rem;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left; 
+}
+
+.result-body p {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed var(--glass-border);
+  display: flex;
+  justify-content: space-between; 
+}
+
+.result-body p:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.batch-action-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+}
+
+.w-full:has(div:contains("Ready")) > div:first-child {
+  display: none; 
+}
+
+.Evaluate-Content-Single .w-full button:disabled,
+.Evaluate-Content-Batch .w-full button:disabled,
+.Evaluate-Content-Single .w-full [disabled],
+.Evaluate-Content-Batch .w-full [disabled] {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: transparent !important;
+  pointer-events: none;
+}
+
+.Evaluate-Content-Single .w-full button:disabled *,
+.Evaluate-Content-Batch .w-full button:disabled * {
+  box-shadow: none !important;
+  outline: none !important;
+}

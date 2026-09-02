@@ -174,7 +174,8 @@ body {
 
 .App-Content-Model-Button,
 .App-Content-BenchMark-Button,
-.App-Content-Developer-Button {
+.App-Content-Developer-Button,
+.App-Content-FeedBack-Button {
   width: 100%;
   display: flex;
   justify-content: center;

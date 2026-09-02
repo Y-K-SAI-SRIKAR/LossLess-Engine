@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --theme-black: #000000;
+  --theme-white: #FFFFFF;
+  --theme-dark-grey: #2E2E2E;
+  --theme-beige: #CFC8B8;
+  --theme-cream: #F5F0E5;
+  --theme-coral: #F26A4B;
+
+  --bg-color: var(--theme-beige);
+  --text-color: var(--theme-black);
+  --card-bg: var(--theme-cream);
+
+  --glass-bg: rgba(255, 255, 255, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: var(--theme-dark-grey);
+    --text-color: var(--theme-white);
+    --card-bg: var(--theme-black);
+
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.3);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 300;
+  font-style: italic;
+  overflow-x: hidden;
+}
+
+#root {
+  display: block;
+  overflow-x: hidden;
+}
+
+.FeedBack{
+  width: 96%;
+  max-width: 1600px;
+  min-height: 92vh;
+  margin: 3vh auto;
+  padding: 3vh 3vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--card-bg);
+  border-radius: 40px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 60px var(--glass-shadow);
+  overflow-x: hidden;
+}
+
+.FeedBack-Intro {
+  width: 100%;
+  max-width: none;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.FeedBack-Intro-Heading .fold-text {
+  --fold-text-color: var(--text-color) !important;
+}
+
+.FeedBack-Intro-SubHeading {
+  width: 100%;
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.custom-class {
+  line-height: 1.4;
+  padding-bottom: 0.1em;
+}
+
+.FeedBack-Content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.FeedBack-Content-Form {
+  width: 100%;
+  max-width: 650px;
+}
+
+.Styled-Form {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 0 10px 40px var(--glass-shadow);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  padding-left: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid var(--glass-border);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+}
+
+.form-group select option {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--theme-coral);
+  box-shadow: 0 0 0 2px rgba(242, 106, 75, 0.2);
+}
+
+.form-submit-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+
+.form-group select option {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 10px;
+}
+
+
+.form-group select option:checked,
+.form-group select option:hover,
+.form-group select option:focus {
+  background-color: var(--theme-coral) !important;
+  /* The gradient trick forces the background color to render in some strict browsers */
+  background: linear-gradient(0deg, var(--theme-coral) 0%, var(--theme-coral) 100%) !important;
+  color: var(--theme-black) !important; 
+}
+
+/* --- Input & Textarea Styles --- */
+.form-group input:not(.hidden-validation-input),
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 18px; 
+  border: 1px solid var(--glass-border);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--theme-coral);
+  box-shadow: 0 0 0 2px rgba(242, 106, 75, 0.2);
+}
+
+.custom-select-container {
+  position: relative;
+  width: 100%;
+}
+
+.hidden-validation-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  bottom: 0;
+  left: 50%;
+}
+
+.custom-select-header {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid var(--glass-border);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.custom-select-header.placeholder-active {
+  color: rgba(128, 128, 128, 0.8);
+}
+
+.custom-select-header.open {
+  border-color: var(--theme-coral);
+  box-shadow: 0 0 0 2px rgba(242, 106, 75, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.custom-select-header .arrow {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.custom-select-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 5px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  z-index: 100;
+  list-style: none;
+  padding: 0.5rem 0;
+  margin-bottom: 0;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.custom-select-item {
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+
+.custom-select-item:hover,
+.custom-select-item.selected {
+  background-color: var(--theme-coral);
+  color: var(--theme-black);
+  font-weight: 500;
+}
+
+.feedback-success {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2e7d32;
+}
+
+.feedback-error {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #c62828;
+}

@@ -7,6 +7,7 @@ import Model from './pages/model.jsx'
 import Evaluate from './pages/evaluate.jsx'
 import BenchMark from './pages/benchmark.jsx'
 import Developer from './pages/developer.jsx'
+import FeedBack from './pages/feedback.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Route path="/benchmark" element={<BenchMark />} />
       <Route path="/models" element={<Model />} />
       <Route path="/developer" element={<Developer />} />
+      <Route path="/feedback" element={<FeedBack/>} />
     </Routes>
   </BrowserRouter>
 )

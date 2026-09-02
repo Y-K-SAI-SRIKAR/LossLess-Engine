@@ -6,7 +6,6 @@ import AnimatedContent from './components/AnimatedContent';
 import SpecularButton from './components/SpecularButton';
 import MaskRevealUp from './components/MaskRevealUp';
 
-
 function App() {
   const navigate = useNavigate();
 
@@ -99,7 +98,7 @@ function App() {
                 followMouse
                 proximity={250}
                 autoAnimate={true}
-                onClick={() => navigate('/evaluate')}
+                onClick={() => window.open("/evaluate", "_blank")}
               >
                 Run Evaluation
               </SpecularButton>
@@ -108,6 +107,44 @@ function App() {
         </div>
 
         <div className="App-Content-NavBox">
+
+          <AnimatedContent
+            distance={100}
+            direction="horizontal"
+            reverse={true}
+            duration={0.9}
+            ease="power3.out"
+            initialOpacity={0}
+            animateOpacity
+            scale={1}
+            threshold={0.1}
+            delay={0}
+          >
+            <div className="App-Content-FeedBack-Button">
+              <SpecularButton
+                size="lg"
+                radius={18}
+                tint="#F26A4B"
+                tintOpacity={0}
+                blur={0}
+                textColor="#000000"
+                lineColor="#CFC8B8"
+                baseColor="#F26A4B"
+                intensity={1}
+                shineSize={10}
+                shineFade={40}
+                thickness={1}
+                speed={0.35}
+                followMouse
+                proximity={250}
+                autoAnimate={true}
+                onClick={() => window.open("/feedback", "_blank")}
+              >
+                Analysis FeedBack
+              </SpecularButton>
+            </div>
+          </AnimatedContent>
+
           <AnimatedContent
             distance={100}
             direction="horizontal"
@@ -138,7 +175,7 @@ function App() {
                 followMouse
                 proximity={250}
                 autoAnimate={true}
-                onClick={() => navigate('/benchmark')}
+                onClick={() => window.open("/benchmark", "_blank")}
               >
                 Model BenchMark
               </SpecularButton>
@@ -175,7 +212,7 @@ function App() {
                 followMouse
                 proximity={250}
                 autoAnimate={true}
-                onClick={() => navigate('/models')}
+                onClick={() => window.open("/models", "_blank")}
               >
                 Model Details
               </SpecularButton>
@@ -212,7 +249,7 @@ function App() {
                 followMouse
                 proximity={250}
                 autoAnimate={true}
-                onClick={() => navigate('/developer')}
+                onClick={() => window.open("/developer", "_blank")}
               >
                 Developer
               </SpecularButton>
@@ -241,6 +278,5 @@ function App() {
     </section>
   );
 }
-
 
 export default App;
