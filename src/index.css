@@ -23,7 +23,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -260,3 +260,42 @@ code {
     @apply bg-background text-foreground;}
   html {
     @apply font-sans;}}
+
+/* =========================================
+   FORCE LIGHT MODE OVERRIDES
+   ========================================= */
+
+/* Force browser UI (like scrollbars) into light mode */
+:root, html, body {
+  color-scheme: light !important;
+}
+
+/* Neutralize system dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 1. Reset Global Theme Variables */
+    --bg-color: var(--theme-beige) !important;
+    --text-color: var(--theme-black) !important;
+    --card-bg: var(--theme-cream) !important;
+    --glass-bg: rgba(255, 255, 255, 0.3) !important;
+    --glass-border: rgba(255, 255, 255, 0.4) !important;
+    --glass-shadow: rgba(0, 0, 0, 0.05) !important;
+
+    /* 2. Reset Typography & Layout Variables (from index.css) */
+    --text: #6b6375 !important;
+    --text-h: #08060d !important;
+    --bg: #fff !important;
+    --border: oklch(0.922 0 0) !important;
+    --code-bg: #f4f3ec !important;
+    --accent: oklch(0.97 0 0) !important;
+    --accent-bg: rgba(170, 59, 255, 0.1) !important;
+    --accent-border: rgba(170, 59, 255, 0.5) !important;
+    --social-bg: rgba(244, 243, 236, 0.5) !important;
+    --shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px !important;
+  }
+  
+  /* Reset any specific dark mode inversions */
+  #social .button-icon {
+    filter: none !important;
+  }
+}
